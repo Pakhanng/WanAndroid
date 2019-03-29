@@ -21,7 +21,7 @@ class CollectFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.collect_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_collect, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

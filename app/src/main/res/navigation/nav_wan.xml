@@ -8,26 +8,29 @@
         android:id="@+id/navigation_home"
         android:name="me.pakhang.wanandroid.ui.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/fragment_home" />
+
     <fragment
         android:id="@+id/navigation_project"
         android:name="me.pakhang.wanandroid.ui.project.ProjectFragment"
-        android:label="project_fragment"
-        tools:layout="@layout/project_fragment" />
+        android:label="@string/project"
+        tools:layout="@layout/fragment_project" />
+
     <fragment
         android:id="@+id/navigation_tree"
         android:name="me.pakhang.wanandroid.ui.tree.TreeFragment"
-        android:label="tree_fragment"
-        tools:layout="@layout/tree_fragment" />
+        android:label="@string/tree"
+        tools:layout="@layout/fragment_tree" />
+
     <fragment
         android:id="@+id/navigation_navi"
         android:name="me.pakhang.wanandroid.ui.navi.NaviFragment"
-        android:label="navi_fragment"
-        tools:layout="@layout/navi_fragment" />
+        android:label="@string/navi"
+        tools:layout="@layout/fragment_navi" />
 
     <fragment
         android:id="@+id/navigation_collect"
         android:name="me.pakhang.wanandroid.ui.collect.CollectFragment"
-        android:label="collect_fragment"
-        tools:layout="@layout/collect_fragment" />
+        android:label="@string/collect"
+        tools:layout="@layout/fragment_collect" />
 </navigation>
