@@ -5,6 +5,8 @@
 用 Kotlin + Jetpack 写的 Android app
 
 ---
+##### 2019-03-30：
+1. 使用 LiveData, ViewModel, Retrofit2, ListAdapter, Diff 等
 
 ##### 2019-03-29：
 1. DataBinding
