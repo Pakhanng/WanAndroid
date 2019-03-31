@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(mNavController) //将底部导航栏加入导航
         binding.navigationView.setupWithNavController(mNavController) //将侧滑菜单栏加入导航
 
-        // 侧滑菜单的页面，隐藏底部导航栏
+        // 某些页面隐藏底部导航栏
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.navigation_collect) {
+            if (destination.id == R.id.collect_fragment || destination.id == R.id.article_detail_fragment) {
                 binding.bottomNavigationView.visibility = View.GONE
             } else {
                 binding.bottomNavigationView.visibility = View.VISIBLE

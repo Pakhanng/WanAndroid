@@ -1,5 +1,6 @@
 package me.pakhang.wanandroid.model
 
+import androidx.paging.PagedList
 import me.pakhang.wanandroid.ui.home.Article
 
 class ArticleModel {
@@ -8,6 +9,6 @@ class ArticleModel {
     var errorMsg: String? = null
 
     inner class Data {
-        var datas: List<Article>? = null
+        var datas: PagedList<Article>? = null
     }
 }

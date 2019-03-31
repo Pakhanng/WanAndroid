@@ -46,4 +46,8 @@ package me.pakhang.wanandroid.ui.home
     "errorMsg": ""
 }
 */
-data class Article(val id: Long, val title: String, val author: String)
+data class Article(
+        val id: Long, val title: String, val author: String,
+        val superChapterName: String, val chapterName: String,
+        val link: String
+)

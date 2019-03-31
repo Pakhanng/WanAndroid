@@ -2,35 +2,49 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/home_fragment">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/home_fragment"
         android:name="me.pakhang.wanandroid.ui.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_fragment_to_article_detail_fragment"
+            app:destination="@id/article_detail_fragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_project"
+        android:id="@+id/project_fragment"
         android:name="me.pakhang.wanandroid.ui.project.ProjectFragment"
         android:label="@string/project"
         tools:layout="@layout/fragment_project" />
 
     <fragment
-        android:id="@+id/navigation_tree"
+        android:id="@+id/tree_fragment"
         android:name="me.pakhang.wanandroid.ui.tree.TreeFragment"
         android:label="@string/tree"
         tools:layout="@layout/fragment_tree" />
 
     <fragment
-        android:id="@+id/navigation_navi"
+        android:id="@+id/navi_fragment"
         android:name="me.pakhang.wanandroid.ui.navi.NaviFragment"
         android:label="@string/navi"
         tools:layout="@layout/fragment_navi" />
 
     <fragment
-        android:id="@+id/navigation_collect"
+        android:id="@+id/collect_fragment"
         android:name="me.pakhang.wanandroid.ui.collect.CollectFragment"
         android:label="@string/collect"
         tools:layout="@layout/fragment_collect" />
+
+    <fragment
+        android:id="@+id/article_detail_fragment"
+        android:name="me.pakhang.wanandroid.ui.ArticleDetailFragment"
+        android:label="加载中"
+        tools:layout="@layout/fragment_article_detail">
+        <argument
+            android:name="link"
+            app:argType="string" />
+    </fragment>
 </navigation>
