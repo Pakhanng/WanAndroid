@@ -1,33 +1,33 @@
 package me.pakhang.wanandroid.ui.project
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import me.pakhang.wanandroid.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import me.pakhang.wanandroid.databinding.FragmentProjectBinding
 
 class ProjectFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ProjectFragment()
-    }
-
     private lateinit var viewModel: ProjectViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_project, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = FragmentProjectBinding.inflate(layoutInflater, container, false)
+        subscribeUi(binding)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ProjectViewModel::class.java)
-        // TODO: Use the ViewModel
+
+    private fun subscribeUi(binding: FragmentProjectBinding) {
+        val viewModel = ViewModelProviders.of(this).get(ProjectViewModel::class.java)
+//        viewModel.articles.observe(this, Observer {
+//            Log.d("cbh", "observer, articles = $it")
+//            adapter.submitList(it)
+//        })
     }
+
+
+
 
 }
