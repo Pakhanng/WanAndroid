@@ -47,7 +47,6 @@ package me.pakhang.wanandroid.ui.home
 }
 */
 data class Article(
-        val id: Int, val title: String, val author: String,
-        val superChapterName: String, val chapterName: String,
-        val link: String
+        val id: Int, val title: String, val author: String, val niceDate: String,
+        val superChapterName: String, val chapterName: String, val link: String, val fresh: Boolean
 )

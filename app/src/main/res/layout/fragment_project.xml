@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
-
         android:layout_width="match_parent"
+        android:background="@android:color/holo_orange_light"
         android:layout_height="match_parent"
         tools:context=".ui.project.ProjectFragment">
 

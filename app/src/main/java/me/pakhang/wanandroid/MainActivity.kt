@@ -1,6 +1,7 @@
 package me.pakhang.wanandroid
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -8,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.get
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -36,6 +38,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setupWithNavController(mNavController) //将底部导航栏加入导航
         binding.navigationView.setupWithNavController(mNavController) //将侧滑菜单栏加入导航
+
+        //解决点击重复创建Fragment的问题
+        binding.bottomNavigationView.setOnNavigationItemReselectedListener {
+            Log.d("cbh", it.toString())
+            Log.d("cbh", "fragment = ${mNavController.currentDestination}" )
+        }
 
         // 某些页面隐藏底部导航栏
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
