@@ -13,12 +13,12 @@ import me.pakhang.wanandroid.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
-    private lateinit var mAdapter: ArticleAdapter
+    private lateinit var mAdapter: HomeAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
-        mAdapter = ArticleAdapter()
+        mAdapter = HomeAdapter()
         binding.articleList.adapter = mAdapter
 
         return binding.root
@@ -26,13 +26,15 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        viewModel.articles.observe(this, Observer { articles ->
-            Log.d("cbh", "observer, articles = $articles")
-            mAdapter.submitList(articles)
+        viewModel = ViewModelProviders.of(this, HomeViewModelFactory()).get(HomeViewModel::class.java)
+        viewModel.banner.observe(this, Observer {
+            Log.d("cbh", "observer, banner = $it")
+            mAdapter.setBanner(it)
         })
-
-        viewModel.loadArticles()
+        viewModel.articles.observe(this, Observer {
+            Log.d("cbh", "observer, articles = $it")
+            mAdapter.submitList(it)
+        })
     }
 
 

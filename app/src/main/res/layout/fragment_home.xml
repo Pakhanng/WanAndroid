@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
+        android:scrollbarThumbVertical="@color/colorPrimary"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context=".ui.home.HomeFragment"

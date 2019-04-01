@@ -38,45 +38,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="作者："
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{article.author}"
+                    android:text='@{"作者："+article.author}'
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="分类："
+                    android:text='@{"分类：" + article.superChapterName + "/" + article.chapterName}'
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{article.superChapterName}"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="/"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{article.chapterName}"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
-
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

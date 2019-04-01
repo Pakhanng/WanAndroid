@@ -2,7 +2,6 @@ package me.pakhang.wanandroid.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +14,13 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_article_detail.*
 import me.pakhang.wanandroid.R
 
-
 class ArticleDetailFragment : Fragment() {
 
     private val args: ArticleDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_article_detail, container, false)
     }
@@ -31,13 +29,21 @@ class ArticleDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        Log.d("cbh", "activity.actionBar=${activity!!.actionBar}")
-
         web_view.settings.javaScriptEnabled = true
-        web_view.webChromeClient = object: WebChromeClient() {
+        web_view.webChromeClient = object : WebChromeClient() {
             override fun onReceivedTitle(view: WebView?, title: String?) {
                 super.onReceivedTitle(view, title)
-                (activity as AppCompatActivity).supportActionBar!!.title = title
+                if (activity != null)
+                    (activity as AppCompatActivity).supportActionBar!!.title = title
+            }
+
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                super.onProgressChanged(view, newProgress)
+                if (progress_bar == null) {
+                    return
+                }
+                if (newProgress == 100) progress_bar.visibility = View.GONE
+                progress_bar.progress = newProgress
             }
         }
         web_view.webViewClient = WebViewClient()
