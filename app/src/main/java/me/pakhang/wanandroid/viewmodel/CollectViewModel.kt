@@ -1,4 +1,4 @@
-package me.pakhang.wanandroid.ui.collect
+package me.pakhang.wanandroid.viewmodel
 
 import androidx.lifecycle.ViewModel;
 

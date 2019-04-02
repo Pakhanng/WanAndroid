@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.youth.banner.BannerConfig
 import com.youth.banner.loader.ImageLoader
-import me.pakhang.wanandroid.databinding.ListBannerBinding
+import me.pakhang.wanandroid.databinding.ItemListBannerBinding
+import me.pakhang.wanandroid.model.BannerItem
 
-class BannerViewHolder(private val binding: ListBannerBinding) : RecyclerView.ViewHolder(binding.root) {
+class BannerViewHolder(private val binding: ItemListBannerBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     fun bind(bannerItems: List<BannerItem>) {
         Log.d("cbh", "bannerItems=$bannerItems")
         val images = ArrayList<String>()
@@ -29,7 +31,8 @@ class BannerViewHolder(private val binding: ListBannerBinding) : RecyclerView.Vi
         banner.start()
 
         banner.setOnBannerListener { position ->
-            val direction = HomeFragmentDirections.actionHomeFragmentToArticleDetailFragment(bannerItems[position].url)
+            val direction =
+                HomeFragmentDirections.actionHomeFragmentToArticleDetailFragment(bannerItems[position].url)
             banner.findNavController().navigate(direction)
         }
     }

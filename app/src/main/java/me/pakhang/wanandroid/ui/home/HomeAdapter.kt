@@ -7,8 +7,10 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.pakhang.wanandroid.R
-import me.pakhang.wanandroid.databinding.ListArticleBinding
-import me.pakhang.wanandroid.databinding.ListBannerBinding
+import me.pakhang.wanandroid.databinding.ItemListArticleBinding
+import me.pakhang.wanandroid.databinding.ItemListBannerBinding
+import me.pakhang.wanandroid.model.Article
+import me.pakhang.wanandroid.model.BannerItem
 
 class HomeAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(ArticleDiffCallback()) {
 
@@ -16,10 +18,18 @@ class HomeAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(ArticleDi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.list_article ->
-                ArticleViewHolder(ListArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            R.layout.list_banner ->
-                BannerViewHolder(ListBannerBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            R.layout.item_list_article ->
+                ArticleViewHolder(
+                    ItemListArticleBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                    )
+                )
+            R.layout.item_list_banner ->
+                BannerViewHolder(
+                    ItemListBannerBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                    )
+                )
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
     }
@@ -27,16 +37,16 @@ class HomeAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(ArticleDi
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Log.d("cbh", "onBindViewHolder, position= $position")
         when (getItemViewType(position)) {
-            R.layout.list_article -> (holder as ArticleViewHolder).bind(getItem(position - 1)!!)
-            R.layout.list_banner -> (holder as BannerViewHolder).bind(mBannerItems)
+            R.layout.item_list_article -> (holder as ArticleViewHolder).bind(getItem(position - 1)!!)
+            R.layout.item_list_banner -> (holder as BannerViewHolder).bind(mBannerItems)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return if (position == 0) {
-            R.layout.list_banner
+            R.layout.item_list_banner
         } else {
-            R.layout.list_article
+            R.layout.item_list_article
         }
     }
 

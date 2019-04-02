@@ -18,7 +18,11 @@
         android:id="@+id/project_fragment"
         android:name="me.pakhang.wanandroid.ui.project.ProjectFragment"
         android:label="@string/project"
-        tools:layout="@layout/fragment_project" />
+        tools:layout="@layout/fragment_project">
+        <action
+            android:id="@+id/action_project_fragment_to_article_detail_fragment"
+            app:destination="@id/article_detail_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/tree_fragment"

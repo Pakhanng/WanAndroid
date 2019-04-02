@@ -1,4 +1,4 @@
-package me.pakhang.wanandroid.ui.home
+package me.pakhang.wanandroid.model
 
 /*
 {

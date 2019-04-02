@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import me.pakhang.wanandroid.databinding.FragmentHomeBinding
+import me.pakhang.wanandroid.viewmodel.HomeViewModel
+import me.pakhang.wanandroid.viewmodel.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
 
@@ -21,7 +23,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun subscribeUi(adapter: HomeAdapter, binding: FragmentHomeBinding) {
-        val viewModel = ViewModelProviders.of(this, HomeViewModelFactory()).get(HomeViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this,
+            HomeViewModelFactory()
+        ).get(HomeViewModel::class.java)
         viewModel.banner.observe(this, Observer {
             Log.d("cbh", "observer, banner = $it")
             adapter.setBanner(it)
