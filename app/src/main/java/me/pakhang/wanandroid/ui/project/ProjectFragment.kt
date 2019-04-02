@@ -1,6 +1,7 @@
 package me.pakhang.wanandroid.ui.project
 
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,7 @@ class ProjectFragment : Fragment() {
         mViewModel = ViewModelProviders.of(this, ProjectViewModelFactory())
             .get(ProjectViewModel::class.java)
         val binding = FragmentProjectBinding.inflate(layoutInflater, container, false)
-        binding.root.postDelayed({ subscribeUi(binding) }, 100)
+        binding.root.postDelayed({ subscribeUi(binding) }, 300)
         return binding.root
     }
 
@@ -36,7 +37,7 @@ class ProjectFragment : Fragment() {
             Log.d("cbh", "observer, projectCategory = $it")
             binding.viewPager.adapter = ViewPagerAdapter(it)
             TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-                tab.text = it[position].name
+                tab.text = Html.fromHtml(it[position].name)
             }.attach()
         })
     }

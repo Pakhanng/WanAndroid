@@ -6,6 +6,8 @@
 
         <import type="android.view.View" />
 
+        <import type="android.text.Html" />
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -42,7 +44,7 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{article.title}"
+                android:text="@{Html.fromHtml(article.title)}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
             <TextView

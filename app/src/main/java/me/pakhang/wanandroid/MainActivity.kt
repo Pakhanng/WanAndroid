@@ -1,6 +1,7 @@
 package me.pakhang.wanandroid
 
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.get
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("cbh", it.toString())
             Log.d("cbh", "fragment = ${mNavController.currentDestination}" )
         }
+//        binding.bnav_host_fragment
 
         // 某些页面隐藏底部导航栏
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
@@ -53,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
