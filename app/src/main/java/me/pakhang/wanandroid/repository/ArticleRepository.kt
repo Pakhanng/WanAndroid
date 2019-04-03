@@ -14,16 +14,16 @@ import retrofit2.Response
 
 // 使用 Dagger2 更优
 object ArticleRepository {
-    private var mApi: WanAndroidApi = WanAndroidApi.create()
+    private var mApi: WanApi = WanApi.create()
 
     fun getBanner(): LiveData<List<BannerItem>> {
         val data = MutableLiveData<List<BannerItem>>()
-        mApi.getBanner().enqueue(object : Callback<WanAndroidApi.BannerResponse> {
-            override fun onFailure(call: Call<WanAndroidApi.BannerResponse>, t: Throwable) {
+        mApi.getBanner().enqueue(object : Callback<WanApi.BannerResponse> {
+            override fun onFailure(call: Call<WanApi.BannerResponse>, t: Throwable) {
                 Log.e("cbh", t.localizedMessage)
             }
 
-            override fun onResponse(call: Call<WanAndroidApi.BannerResponse>, response: Response<WanAndroidApi.BannerResponse>) {
+            override fun onResponse(call: Call<WanApi.BannerResponse>, response: Response<WanApi.BannerResponse>) {
                 data.postValue(response.body()!!.data)
             }
 
@@ -34,10 +34,10 @@ object ArticleRepository {
     fun getArticles(): LiveData<PagedList<Article>> {
         val sourceFactory = ArticleDataSourceFactory(mApi)
         val pagedListConfig = PagedList.Config.Builder()
-                .setPageSize(2) // 分2页加载，滑到最后才会调用loadAfter
-                .setPrefetchDistance(3) // 设置距离最后还有多少个item时调用loadAfter
-                .setEnablePlaceholders(false) // 表示是否设置null占位符；
-                .build()
+            .setPageSize(2) // 分2页加载，滑到最后才会调用loadAfter
+            .setPrefetchDistance(3) // 设置距离最后还有多少个item时调用loadAfter
+            .setEnablePlaceholders(false) // 表示是否设置null占位符；
+            .build()
         val data = LivePagedListBuilder(sourceFactory, pagedListConfig).build()
         Log.d("cbh", "data = $data")
         return data

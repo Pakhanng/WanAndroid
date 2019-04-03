@@ -2,10 +2,10 @@ package me.pakhang.wanandroid.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import me.pakhang.wanandroid.repository.WanAndroidApi
+import me.pakhang.wanandroid.repository.WanApi
 import me.pakhang.wanandroid.model.Article
 
-class ArticleDataSourceFactory(private val api: WanAndroidApi) : DataSource.Factory<Int, Article>() {
+class ArticleDataSourceFactory(private val api: WanApi) : DataSource.Factory<Int, Article>() {
 
     private val articles = MutableLiveData<ArticleDataSource>()
 

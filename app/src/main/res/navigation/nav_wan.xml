@@ -10,8 +10,8 @@
         android:label="@string/home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_home_fragment_to_article_detail_fragment"
-            app:destination="@id/article_detail_fragment" />
+            android:id="@+id/action_home_fragment_to_web_view_fragment"
+            app:destination="@id/web_view_fragment" />
     </fragment>
 
     <fragment
@@ -20,14 +20,14 @@
         android:label="@string/project"
         tools:layout="@layout/fragment_project">
         <action
-            android:id="@+id/action_project_fragment_to_article_detail_fragment"
-            app:destination="@id/article_detail_fragment" />
+            android:id="@+id/action_project_fragment_to_web_view_fragment"
+            app:destination="@id/web_view_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/tree_fragment"
-        android:name="me.pakhang.wanandroid.ui.tree.TreeFragment"
-        android:label="@string/tree"
+        android:name="me.pakhang.wanandroid.ui.knowledge.KnowledgeFragment"
+        android:label="@string/knowledge"
         tools:layout="@layout/fragment_tree" />
 
     <fragment
@@ -43,10 +43,10 @@
         tools:layout="@layout/fragment_collect" />
 
     <fragment
-        android:id="@+id/article_detail_fragment"
-        android:name="me.pakhang.wanandroid.ui.ArticleDetailFragment"
+        android:id="@+id/web_view_fragment"
+        android:name="me.pakhang.wanandroid.ui.WebViewFragment"
         android:label="加载中"
-        tools:layout="@layout/fragment_article_detail">
+        tools:layout="@layout/fragment_web_view">
         <argument
             android:name="link"
             app:argType="string" />

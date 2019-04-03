@@ -13,7 +13,7 @@
     <item
         android:id="@+id/tree_fragment"
         android:icon="@drawable/ic_library_books_black_24dp"
-        android:title="@string/tree" />
+        android:title="@string/knowledge" />
 
     <item
         android:id="@+id/navi_fragment"

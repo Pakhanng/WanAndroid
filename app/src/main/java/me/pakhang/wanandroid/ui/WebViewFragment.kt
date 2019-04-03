@@ -2,7 +2,6 @@ package me.pakhang.wanandroid.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,19 +11,18 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_article_detail.*
+import kotlinx.android.synthetic.main.fragment_web_view.*
 import me.pakhang.wanandroid.R
 
-class ArticleDetailFragment : Fragment() {
+class WebViewFragment : Fragment() {
 
-    private val args: ArticleDetailFragmentArgs by navArgs()
+    private val args: WebViewFragmentArgs by navArgs()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_article_detail, container, false)
+        return inflater.inflate(R.layout.fragment_web_view, container, false)
     }
 
     @SuppressLint("SetJavaScriptEnabled")

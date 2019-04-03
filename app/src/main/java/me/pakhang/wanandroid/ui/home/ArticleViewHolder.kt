@@ -10,7 +10,7 @@ class ArticleViewHolder(private val binding: ItemListArticleBinding) : RecyclerV
         fun bind(article: Article) {
             binding.article = article
             binding.clickListener = View.OnClickListener {
-                val direction = HomeFragmentDirections.actionHomeFragmentToArticleDetailFragment(article.link)
+                val direction = HomeFragmentDirections.actionHomeFragmentToWebViewFragment(article.link)
                 it.findNavController().navigate(direction)
             }
         }

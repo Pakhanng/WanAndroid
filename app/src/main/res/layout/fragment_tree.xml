@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
-    tools:context=".ui.tree.TreeFragment">
+    tools:context=".ui.knowledge.KnowledgeFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="体系" />
+        android:text="@string/knowledge" />
 
 </FrameLayout>

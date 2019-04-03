@@ -14,16 +14,16 @@ import retrofit2.Response
 
 // 使用 Dagger2 更优
 object ProjectRepository {
-    private var mApi: WanAndroidApi = WanAndroidApi.create()
+    private var mApi: WanApi = WanApi.create()
 
     fun getProjectCategory(): LiveData<List<ProjectCategory>> {
         val data = MutableLiveData<List<ProjectCategory>>()
-        mApi.getProjectCategory().enqueue(object : Callback<WanAndroidApi.ProjectCategoryResponse> {
-            override fun onFailure(call: Call<WanAndroidApi.ProjectCategoryResponse>, t: Throwable) {
+        mApi.getProjectCategory().enqueue(object : Callback<WanApi.ProjectCategoryResponse> {
+            override fun onFailure(call: Call<WanApi.ProjectCategoryResponse>, t: Throwable) {
                 Log.e("cbh", t.localizedMessage)
             }
 
-            override fun onResponse(call: Call<WanAndroidApi.ProjectCategoryResponse>, response: Response<WanAndroidApi.ProjectCategoryResponse>) {
+            override fun onResponse(call: Call<WanApi.ProjectCategoryResponse>, response: Response<WanApi.ProjectCategoryResponse>) {
                 data.postValue(response.body()!!.data)
             }
 

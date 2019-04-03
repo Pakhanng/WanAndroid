@@ -11,7 +11,7 @@ class ProjectViewHolder(private val binding: ItemListProjectBinding) : RecyclerV
         fun bind(project: Project) {
             binding.project = project
             binding.clickListener = View.OnClickListener {
-                val direction = ProjectFragmentDirections.actionProjectFragmentToArticleDetailFragment(project.link)
+                val direction = ProjectFragmentDirections.actionProjectFragmentToWebViewFragment(project.link)
                 it.findNavController().navigate(direction)
             }
             Glide.with(binding.root).load(project.envelopePic).into(binding.envelopePic)

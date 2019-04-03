@@ -32,7 +32,7 @@ class BannerViewHolder(private val binding: ItemListBannerBinding) :
 
         banner.setOnBannerListener { position ->
             val direction =
-                HomeFragmentDirections.actionHomeFragmentToArticleDetailFragment(bannerItems[position].url)
+                HomeFragmentDirections.actionHomeFragmentToWebViewFragment(bannerItems[position].url)
             banner.findNavController().navigate(direction)
         }
     }

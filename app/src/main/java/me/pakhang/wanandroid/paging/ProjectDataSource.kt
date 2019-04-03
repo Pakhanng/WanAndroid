@@ -2,10 +2,10 @@ package me.pakhang.wanandroid.paging
 
 import android.util.Log
 import androidx.paging.ItemKeyedDataSource
-import me.pakhang.wanandroid.repository.WanAndroidApi
+import me.pakhang.wanandroid.repository.WanApi
 import me.pakhang.wanandroid.model.Project
 
-class ProjectDataSource(private val api: WanAndroidApi, private val cid: Int) : ItemKeyedDataSource<Int, Project>() {
+class ProjectDataSource(private val api: WanApi, private val cid: Int) : ItemKeyedDataSource<Int, Project>() {
 
     private var page: Int = 1
 

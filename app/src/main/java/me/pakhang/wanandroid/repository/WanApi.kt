@@ -14,11 +14,11 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface WanAndroidApi {
+interface WanApi {
 
     companion object {
         private const val BASE_URL = "https://www.wanandroid.com"
-        fun create(): WanAndroidApi {
+        fun create(): WanApi {
             val logger = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
                 Log.d("API", it)
             })
@@ -33,7 +33,7 @@ interface WanAndroidApi {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(WanAndroidApi::class.java)
+                .create(WanApi::class.java)
         }
     }
 

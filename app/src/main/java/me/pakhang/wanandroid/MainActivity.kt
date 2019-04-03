@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         // 某些页面隐藏底部导航栏
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.collect_fragment || destination.id == R.id.article_detail_fragment) {
+            if (destination.id == R.id.collect_fragment || destination.id == R.id.web_view_fragment) {
                 binding.bottomNavigationView.visibility = View.GONE
             } else {
                 binding.bottomNavigationView.visibility = View.VISIBLE

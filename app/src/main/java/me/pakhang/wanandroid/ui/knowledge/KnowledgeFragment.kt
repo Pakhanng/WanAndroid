@@ -1,4 +1,4 @@
-package me.pakhang.wanandroid.ui.tree
+package me.pakhang.wanandroid.ui.knowledge
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,13 +9,13 @@ import android.view.ViewGroup
 
 import me.pakhang.wanandroid.R
 
-class TreeFragment : Fragment() {
+class KnowledgeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = TreeFragment()
+        fun newInstance() = KnowledgeFragment()
     }
 
-    private lateinit var viewModel: TreeViewModel
+    private lateinit var viewModel: KnowledgeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +26,7 @@ class TreeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TreeViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(KnowledgeViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
