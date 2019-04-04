@@ -39,6 +39,7 @@ class ProjectFragment : Fragment() {
             TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
                 tab.text = Html.fromHtml(it[position].name)
             }.attach()
+            binding.progressBar.hide()
         })
     }
 
@@ -69,6 +70,7 @@ class ProjectFragment : Fragment() {
             mViewModel.getProjects(id).observe(viewLifecycleOwner, Observer {
                 Log.d("cbh", "observer, projects = $it")
                 adapter.submitList(it)
+                binding.progressBar.hide()
             })
         }
     }

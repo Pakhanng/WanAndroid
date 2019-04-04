@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
         viewModel.articles.observe(this, Observer {
             Log.d("cbh", "observer, articles = $it")
             adapter.submitList(it)
+            binding.progressBar.hide()
         })
     }
 
