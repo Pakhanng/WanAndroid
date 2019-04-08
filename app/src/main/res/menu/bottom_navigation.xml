@@ -11,7 +11,7 @@
         android:title="@string/project" />
 
     <item
-        android:id="@+id/tree_fragment"
+        android:id="@+id/knowledge_fragment"
         android:icon="@drawable/ic_library_books_black_24dp"
         android:title="@string/knowledge" />
 

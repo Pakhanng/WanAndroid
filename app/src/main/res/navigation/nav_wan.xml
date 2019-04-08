@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_home_fragment_to_web_view_fragment"
             app:destination="@id/web_view_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
     </fragment>
 
     <fragment
@@ -25,10 +28,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/tree_fragment"
+        android:id="@+id/knowledge_fragment"
         android:name="me.pakhang.wanandroid.ui.knowledge.KnowledgeFragment"
         android:label="@string/knowledge"
-        tools:layout="@layout/fragment_tree" />
+        tools:layout="@layout/fragment_knowledge" />
 
     <fragment
         android:id="@+id/navi_fragment"
@@ -51,4 +54,9 @@
             android:name="link"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="me.pakhang.wanandroid.ui.user.LoginFragment"
+        android:label="登录"
+        tools:layout="@layout/fragment_login" />
 </navigation>

@@ -14,27 +14,33 @@ import me.pakhang.wanandroid.viewmodel.HomeViewModelFactory
 
 class HomeFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        val adapter = HomeAdapter()
-        binding.articleList.adapter = adapter
-        subscribeUi(adapter, binding)
-        return binding.root
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        FragmentHomeBinding.inflate(layoutInflater, container, false)
+            .apply {
+                val adapter = HomeAdapter()
+                articleList.adapter = adapter
+                subscribeUi(adapter, this)
+                return root
+            }
     }
 
     private fun subscribeUi(adapter: HomeAdapter, binding: FragmentHomeBinding) {
-        val viewModel = ViewModelProviders.of(this,
-            HomeViewModelFactory()
-        ).get(HomeViewModel::class.java)
-        viewModel.banner.observe(this, Observer {
-            Log.d("cbh", "observer, banner = $it")
-            adapter.setBanner(it)
-        })
-        viewModel.articles.observe(this, Observer {
-            Log.d("cbh", "observer, articles = $it")
-            adapter.submitList(it)
-            binding.progressBar.hide()
-        })
+        ViewModelProviders.of(this, HomeViewModelFactory()).get(HomeViewModel::class.java)
+            .apply {
+                banner.observe(viewLifecycleOwner, Observer {
+                    Log.d("cbh", "observer, banner = $it")
+                    adapter.setBanner(it)
+                })
+                articles.observe(viewLifecycleOwner, Observer {
+                    Log.d("cbh", "observer, articles = $it")
+                    adapter.submitList(it)
+                    binding.progressBar.hide()
+                })
+            }
     }
 
 }

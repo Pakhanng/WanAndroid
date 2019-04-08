@@ -25,11 +25,12 @@ class ProjectFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel = ViewModelProviders.of(this, ProjectViewModelFactory())
-            .get(ProjectViewModel::class.java)
-        val binding = FragmentProjectBinding.inflate(layoutInflater, container, false)
-        binding.root.postDelayed({ subscribeUi(binding) }, 300)
-        return binding.root
+        mViewModel =
+            ViewModelProviders.of(this, ProjectViewModelFactory()).get(ProjectViewModel::class.java)
+        FragmentProjectBinding.inflate(layoutInflater, container, false).apply {
+            root.postDelayed({ subscribeUi(this) }, 300)
+            return root
+        }
     }
 
     private fun subscribeUi(binding: FragmentProjectBinding) {
