@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -86,6 +87,23 @@ interface WanApi {
 
         inner class Data {
             val datas: List<Project>? = null
+        }
+    }
+
+    /**
+     * 某一个分类下项目列表数据，分页展示
+     * 参数：
+     * cid 分类的id，上面项目分类接口
+     * page：拼接在链接中，从1开始。
+     */
+    @POST("user/login")
+    fun login(@Query("username") userName: String?, @Query("password") password: String?): Call<LoginResponse>
+
+    class LoginResponse {
+        val data: Data? = null
+
+        inner class Data {
+            val username: String = ""
         }
     }
 

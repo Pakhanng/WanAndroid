@@ -5,23 +5,23 @@
     <data>
 
         <variable
-            name="user"
-            type="me.pakhang.wanandroid.model.UserPost" />
+            name="viewModel"
+            type="me.pakhang.wanandroid.viewmodel.UserViewModel" />
 
         <variable
-            name="gotoLogin"
+            name="gotoSignIn"
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="gotoRegister"
+            name="gotoSignUp"
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="login"
+            name="signIn"
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="register"
+            name="signUp"
             type="android.view.View.OnClickListener" />
     </data>
 
@@ -38,30 +38,42 @@
             android:layout_marginTop="16dp"
             android:src="@drawable/wan_logo" />
 
-        <EditText
-            android:id="@+id/input_username"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:drawableStart="@drawable/ic_person_outline_black_24dp"
-            android:drawablePadding="16dp"
-            android:drawableTint="@color/colorPrimary"
-            android:hint="用户名" />
+            android:layout_marginEnd="16dp">
 
-        <EditText
-            android:id="@+id/input_password"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/white"
+                android:drawableStart="@drawable/ic_person_outline_black_24dp"
+                android:drawablePadding="16dp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="用户名"
+                android:text="@={viewModel.userName}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:drawableStart="@drawable/ic_lock_outline_black_24dp"
-            android:drawablePadding="16dp"
-            android:drawableTint="@color/colorPrimary"
-            android:hint="密码"
-            android:inputType="textPassword" />
+            android:layout_marginEnd="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/white"
+                android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                android:drawablePadding="16dp"
+                android:drawableTint="@color/colorPrimary"
+                android:hint="密码"
+                android:inputType="textPassword"
+                android:text="@={viewModel.password}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <FrameLayout
             android:id="@+id/scene_root"
@@ -69,7 +81,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/scene_login"
+                android:id="@+id/scene_sign_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -78,53 +90,57 @@
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
-                    android:enabled="@{user.username.length() > 0 &amp;&amp; user.password.length() > 0}"
-                    android:onClick="@{login}"
+                    android:onClick="@{signIn}"
                     android:text="登录"
                     android:theme="@style/PrimaryButton" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="wrap_content"
-                    android:layout_height="58dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:onClick="@{gotoRegister}"
+                    android:onClick="@{gotoSignUp}"
                     android:text="注册账号" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/scene_register"
+                android:id="@+id/scene_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <EditText
-                    android:id="@+id/input_confirm_password"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:drawableStart="@drawable/ic_lock_outline_black_24dp"
-                    android:drawablePadding="16dp"
-                    android:drawableTint="@color/colorPrimary"
-                    android:hint="确认密码"
-                    android:inputType="textPassword" />
+                    android:layout_marginEnd="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_confirm_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/white"
+                        android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                        android:drawablePadding="16dp"
+                        android:drawableTint="@color/colorPrimary"
+                        android:hint="确认密码"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.confirmPassword}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
-                    android:enabled="@{user.username.length() > 0 &amp;&amp; user.password.length() > 0 &amp;&amp; user.confirmPassword.length() > 0}"
-                    android:onClick="@{register}"
+                    android:enabled="@{viewModel.userName.length() > 0 &amp;&amp; viewModel.password.length() > 0 &amp;&amp; viewModel.confirmPassword.length() > 0}"
+                    android:onClick="@{signUp}"
                     android:text="注册"
                     android:theme="@style/PrimaryButton" />
 
@@ -135,8 +151,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:onClick="@{gotoLogin}"
+                    android:onClick="@{gotoSignIn}"
                     android:text="直接登录" />
             </LinearLayout>
         </FrameLayout>

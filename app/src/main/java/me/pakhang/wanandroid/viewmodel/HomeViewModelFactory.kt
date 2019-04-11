@@ -9,7 +9,6 @@ import me.pakhang.wanandroid.repository.ArticleRepository
  */
 @Suppress("UNCHECKED_CAST")
 class HomeViewModelFactory : ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel?> create(modelClass: Class<T>) = HomeViewModel(
-        ArticleRepository
-    ) as T
+    override fun <T : ViewModel?> create(modelClass: Class<T>) =
+        HomeViewModel(ArticleRepository) as T
 }
