@@ -19,4 +19,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
+    <style name="PrimaryButton" parent="Base.ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">@drawable/selector_color_primary</item>
+    </style>
+
 </resources>

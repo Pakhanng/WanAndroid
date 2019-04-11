@@ -13,7 +13,7 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
 
-
     <color name="background">#EAEAEA</color>
     <color name="foreground">#FAFAFA</color>
+    <color name="primary_disable">#7F2196F3</color>
 </resources>
