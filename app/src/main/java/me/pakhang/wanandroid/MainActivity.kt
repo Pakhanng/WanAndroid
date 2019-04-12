@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val drawerHeaderBinding: DrawerHeaderBinding =
             DataBindingUtil.bind(binding.navigationView.getHeaderView(0))!!
         drawerHeaderBinding.clickListener = View.OnClickListener {
-            val direction = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+            val direction = HomeFragmentDirections.actionHomeFragmentToUserProfileFragment()
             mNavController.navigate(direction)
             mDrawerLayout.closeDrawers()
         }

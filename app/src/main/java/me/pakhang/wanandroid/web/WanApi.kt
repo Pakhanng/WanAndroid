@@ -1,10 +1,7 @@
-package me.pakhang.wanandroid.repository
+package me.pakhang.wanandroid.web
 
 import android.util.Log
-import me.pakhang.wanandroid.model.Article
-import me.pakhang.wanandroid.model.BannerItem
-import me.pakhang.wanandroid.model.Project
-import me.pakhang.wanandroid.model.ProjectCategory
+import me.pakhang.wanandroid.model.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -27,6 +24,7 @@ interface WanApi {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(logger)
+                .addInterceptor (CookieInterceptor())
                 .build()
 
             return Retrofit.Builder()
@@ -38,6 +36,11 @@ interface WanApi {
         }
     }
 
+    open class BaseResponse {
+        val errorCode: Int = -1
+        val errorMsg: String = ""
+    }
+
     /**
      * 首页文章列表
      * 参数：页码，拼接在连接中，从0开始。
@@ -45,7 +48,7 @@ interface WanApi {
     @GET("article/list/{page}/json")
     fun getArticles(@Path("page") page: Int): Call<ArticleResponse>
 
-    class ArticleResponse {
+    class ArticleResponse : BaseResponse() {
         val data: Data? = null
 
         inner class Data {
@@ -99,12 +102,8 @@ interface WanApi {
     @POST("user/login")
     fun login(@Query("username") userName: String?, @Query("password") password: String?): Call<LoginResponse>
 
-    class LoginResponse {
-        val data: Data? = null
-
-        inner class Data {
-            val username: String = ""
-        }
+    class LoginResponse : BaseResponse() {
+        val data: User? = null
     }
 
 }

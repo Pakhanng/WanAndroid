@@ -8,6 +8,7 @@ import androidx.paging.PagedList
 import me.pakhang.wanandroid.paging.ProjectDataSourceFactory
 import me.pakhang.wanandroid.model.Project
 import me.pakhang.wanandroid.model.ProjectCategory
+import me.pakhang.wanandroid.web.WanApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

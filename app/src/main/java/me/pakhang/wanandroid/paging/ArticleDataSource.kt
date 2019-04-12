@@ -2,7 +2,7 @@ package me.pakhang.wanandroid.paging
 
 import android.util.Log
 import androidx.paging.ItemKeyedDataSource
-import me.pakhang.wanandroid.repository.WanApi
+import me.pakhang.wanandroid.web.WanApi
 import me.pakhang.wanandroid.model.Article
 
 class ArticleDataSource(private val api: WanApi) : ItemKeyedDataSource<Int, Article>() {
