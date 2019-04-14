@@ -7,6 +7,10 @@
         <variable
             name="user"
             type="me.pakhang.wanandroid.model.User" />
+
+        <variable
+            name="signOut"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <LinearLayout
@@ -21,5 +25,14 @@
             android:layout_height="wrap_content"
             android:text='@{"用户名：" + user.username}' />
 
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{signOut}"
+            android:text="退出登录" />
     </LinearLayout>
 </layout>

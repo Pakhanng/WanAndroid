@@ -14,7 +14,7 @@ import me.pakhang.wanandroid.model.BannerItem
 
 class HomeAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(ArticleDiffCallback()) {
 
-    private lateinit var mBannerItems: List<BannerItem>
+    private var mBannerItems = listOf<BannerItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {

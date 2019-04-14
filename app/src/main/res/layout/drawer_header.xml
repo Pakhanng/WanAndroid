@@ -4,6 +4,10 @@
     <data>
 
         <variable
+            name="user"
+            type="me.pakhang.wanandroid.model.User" />
+
+        <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
 
@@ -29,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:text="点击头像登录"
+            android:text='@{user != null ? user.username : "点击头像登录"}'
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     </FrameLayout>
