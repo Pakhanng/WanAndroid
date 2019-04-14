@@ -24,7 +24,7 @@ interface WanApi {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(logger)
-                .addInterceptor (CookieInterceptor())
+                .addInterceptor(CookieInterceptor())
                 .build()
 
             return Retrofit.Builder()
@@ -94,16 +94,33 @@ interface WanApi {
     }
 
     /**
-     * 某一个分类下项目列表数据，分页展示
-     * 参数：
-     * cid 分类的id，上面项目分类接口
-     * page：拼接在链接中，从1开始。
+     * 登录后会在cookie中返回账号密码，只要在客户端做cookie持久化存储即可自动登录验证。
      */
     @POST("user/login")
     fun login(@Query("username") userName: String?, @Query("password") password: String?): Call<LoginResponse>
 
     class LoginResponse : BaseResponse() {
-        val data: User? = null
+        val data: User = User()
     }
+
+    /**
+     * 注册
+     */
+    @POST("user/register")
+    fun register(
+        @Query("username") userName: String?,
+        @Query("password") password: String?,
+        @Query("repassword") confirmPassword: String?
+    ): Call<RegisterResponse>
+
+    class RegisterResponse : BaseResponse() {
+        val data: User = User()
+    }
+
+    /**
+     * 退出
+     */
+    @GET("user/logout/json")
+    fun logout(): Call<BaseResponse>
 
 }

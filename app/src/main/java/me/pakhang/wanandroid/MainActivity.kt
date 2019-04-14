@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,6 +18,8 @@ import androidx.navigation.ui.setupWithNavController
 import me.pakhang.wanandroid.databinding.ActivityMainBinding
 import me.pakhang.wanandroid.databinding.DrawerHeaderBinding
 import me.pakhang.wanandroid.ui.home.HomeFragmentDirections
+import me.pakhang.wanandroid.viewmodel.UserViewModel
+import me.pakhang.wanandroid.viewmodel.UserViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,13 +45,23 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(mNavController) //将底部导航栏加入导航
         binding.navigationView.setupWithNavController(mNavController) //将侧滑菜单栏加入导航
 
+
         // 设置侧滑菜单头部点击事件
+        val userViewModel = ViewModelProviders.of(this@MainActivity, UserViewModelFactory()).get(
+            UserViewModel::class.java
+        )
         val drawerHeaderBinding: DrawerHeaderBinding =
             DataBindingUtil.bind(binding.navigationView.getHeaderView(0))!!
-        drawerHeaderBinding.clickListener = View.OnClickListener {
-            val direction = HomeFragmentDirections.actionHomeFragmentToUserProfileFragment()
-            mNavController.navigate(direction)
-            mDrawerLayout.closeDrawers()
+        drawerHeaderBinding.apply {
+            userViewModel.user.observe(this@MainActivity, Observer {
+                Log.d("cbh", "MainActivity observe user = ${userViewModel.user.value}")
+                user = userViewModel.user.value
+            })
+            clickListener = View.OnClickListener {
+                val direction = HomeFragmentDirections.actionHomeFragmentToUserProfileFragment()
+                mNavController.navigate(direction)
+                mDrawerLayout.closeDrawers()
+            }
         }
 
         //解决点击重复创建Fragment的问题
@@ -68,6 +82,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        // 登录页面中点击左上返回键直接回到首页
+        val currentDestination = mNavController.currentDestination
+        if (currentDestination != null && currentDestination.id == R.id.login_fragment) {
+            mNavController.popBackStack(R.id.home_fragment, false)
+            return false
+        }
+
         return mNavController.navigateUp(mAppBarConfiguration) || super.onSupportNavigateUp()
     }
 

@@ -1,18 +1,18 @@
 package me.pakhang.wanandroid.ui.user
 
 import android.os.Bundle
+import android.text.TextWatcher
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.activity.OnBackPressedCallback
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.transition.Slide
 import androidx.transition.TransitionManager
+import me.pakhang.wanandroid.MainActivity
 import me.pakhang.wanandroid.R
 import me.pakhang.wanandroid.databinding.FragmentLoginBinding
 import me.pakhang.wanandroid.model.Status
@@ -36,44 +36,81 @@ class LoginFragment : Fragment() {
 
     private fun subscribeUi(binding: FragmentLoginBinding) {
         val viewModel =
-            ViewModelProviders.of(this, UserViewModelFactory()).get(UserViewModel::class.java)
+            ViewModelProviders.of(activity!!, UserViewModelFactory()).get(UserViewModel::class.java)
                 .apply {
                     binding.viewModel = this
                 }
 
         binding.apply {
+            progressBar.hide()
+
+            usernameInput.addTextChangedListener { binding.viewModel = viewModel }
+            passwordInput.addTextChangedListener { binding.viewModel = viewModel }
+            confirmPasswordInput.addTextChangedListener { binding.viewModel = viewModel }
+
             gotoSignIn = View.OnClickListener {
                 TransitionManager.beginDelayedTransition(sceneRoot, mSlide)
                 sceneSignIn.visibility = View.VISIBLE
                 sceneSignUp.visibility = View.GONE
             }
+
             gotoSignUp = View.OnClickListener {
                 TransitionManager.beginDelayedTransition(sceneRoot, mSlide)
                 sceneSignIn.visibility = View.GONE
                 sceneSignUp.visibility = View.VISIBLE
+                passwordInputLayout.error = null
             }
+
             signIn = View.OnClickListener {
+                passwordInputLayout.error = null
                 val resource = viewModel.signIn()
                 resource.observe(viewLifecycleOwner, Observer {
-                    when(resource.value!!.status) {
-                        Status.SUCCESS -> Log.d("cbh", "user = ${resource.value!!.data}")
+                    val res = resource.value!!
+                    when (res.status) {
+                        Status.SUCCESS -> {
+                            viewModel.setUser(res.data!!)
+                            findNavController().popBackStack()
+                            progressBar.hide()
+                        }
+                        Status.ERROR -> {
+                            passwordInputLayout.error = res.message
+                            progressBar.hide()
+                        }
+                        Status.LOADING -> {
+                            progressBar.show()
+                        }
                     }
 
                 })
             }
+
             signUp = View.OnClickListener {
-                viewModel.signUp()
+                confirmPasswordInputLayout.error = null
+                val resource = viewModel.signUp()
+                resource.observe(viewLifecycleOwner, Observer {
+                    val res = resource.value!!
+                    when (res.status) {
+                        Status.SUCCESS -> {
+                            viewModel.setUser(res.data!!)
+                            findNavController().popBackStack()
+                            progressBar.hide()
+                        }
+                        Status.ERROR -> {
+                            confirmPasswordInputLayout.error = res.message
+                            progressBar.hide()
+                        }
+                        Status.LOADING -> {
+                            progressBar.show()
+                        }
+                    }
+                })
             }
         }
 
         requireActivity().addOnBackPressedCallback(viewLifecycleOwner, OnBackPressedCallback {
-//            viewModel.refuseAuthentication()
             findNavController().popBackStack(R.id.home_fragment, false)
             true
         })
-
     }
-
-
 
 }

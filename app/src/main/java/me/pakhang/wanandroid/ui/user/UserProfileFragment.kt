@@ -12,14 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.transition.Slide
+import me.pakhang.wanandroid.App
+import me.pakhang.wanandroid.MainActivity
 import me.pakhang.wanandroid.R
 import me.pakhang.wanandroid.databinding.FragmentUserProfileBinding
 import me.pakhang.wanandroid.viewmodel.UserViewModel
 import me.pakhang.wanandroid.viewmodel.UserViewModelFactory
 
 class UserProfileFragment : Fragment() {
-
-    private val mSlide by lazy { Slide(Gravity.END) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,37 +32,23 @@ class UserProfileFragment : Fragment() {
             }
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val set = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
-            "cookies", null
-        )
-        Log.d("cbh", "set = $set")
-
-        var loginUserName: String? = null
-        for (cookie in set) {
-            if (cookie.startsWith("loginUserName")) {
-                loginUserName = cookie
-            }
-        }
-        if (loginUserName == null) {
-            Log.d("cbh", "go login")
-            findNavController().navigate(R.id.login_fragment)
-        }
-    }
-
     private fun subscribeUi(binding: FragmentUserProfileBinding) {
-        ViewModelProviders.of(this, UserViewModelFactory()).get(UserViewModel::class.java)
+        Log.d("cbh","isLogin ${App.isLogin()}")
+        val viewModel = ViewModelProviders.of(activity!!, UserViewModelFactory()).get(UserViewModel::class.java)
             .apply {
-                authenticationState.observe(viewLifecycleOwner, Observer {
-                    if (it == UserViewModel.AuthenticationState.UNAUTHENTICATED)
+                binding.user = user.value
+                user.observe(viewLifecycleOwner, Observer {
+                    Log.d("cbh", "UserProfileFragment observe user = ${user.value}")
+                    if (it == null)
                         findNavController().navigate(R.id.login_fragment)
+
                 })
             }
-
         binding.apply {
-
+            signOut = View.OnClickListener {
+                viewModel.signOut()
+                findNavController().popBackStack(R.id.home_fragment, false)
+            }
         }
     }
 

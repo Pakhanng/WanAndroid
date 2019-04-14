@@ -9,6 +9,13 @@
             type="me.pakhang.wanandroid.viewmodel.UserViewModel" />
 
         <variable
+            name="canSignIn"
+            type="Boolean" />
+
+        <variable
+            name="canSignUp"
+            type="Boolean" />
+        <variable
             name="gotoSignIn"
             type="android.view.View.OnClickListener" />
 
@@ -45,7 +52,7 @@
             android:layout_marginEnd="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_username"
+                android:id="@+id/username_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/white"
@@ -53,17 +60,18 @@
                 android:drawablePadding="16dp"
                 android:drawableTint="@color/colorPrimary"
                 android:hint="用户名"
-                android:text="@={viewModel.userName}" />
+                android:text='@={viewModel.userName}' />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_password"
+                android:id="@+id/password_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/white"
@@ -72,7 +80,7 @@
                 android:drawableTint="@color/colorPrimary"
                 android:hint="密码"
                 android:inputType="textPassword"
-                android:text="@={viewModel.password}" />
+                android:text='@={viewModel.password}' />
         </com.google.android.material.textfield.TextInputLayout>
 
         <FrameLayout
@@ -93,6 +101,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:onClick="@{signIn}"
+                    android:enabled="@{viewModel.userName.length() > 0 &amp;&amp; viewModel.password.length() > 0}"
                     android:text="登录"
                     android:theme="@style/PrimaryButton" />
 
@@ -115,13 +124,14 @@
                 android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/confirm_password_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_confirm_password"
+                        android:id="@+id/confirm_password_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/white"
@@ -154,6 +164,13 @@
                     android:onClick="@{gotoSignIn}"
                     android:text="直接登录" />
             </LinearLayout>
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
         </FrameLayout>
     </LinearLayout>
 </layout>

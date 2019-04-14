@@ -28,7 +28,7 @@ package me.pakhang.wanandroid.model
 }
 */
 data class User(
-    val id: Int,
-    val username: String,
-    val collectIds: List<Int>
+    val id: Int = -1,
+    val username: String = "",
+    val collectIds: List<Int>? = null
 )
