@@ -8,38 +8,35 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import me.pakhang.wanandroid.App
-import me.pakhang.wanandroid.R
-import me.pakhang.wanandroid.databinding.FragmentKnowledgeBinding
+import androidx.navigation.fragment.navArgs
+import me.pakhang.wanandroid.databinding.FragmentKnowledgeArticleBinding
 import me.pakhang.wanandroid.viewmodel.KnowledgeViewModel
 import me.pakhang.wanandroid.viewmodel.KnowledgeViewModelFactory
 
-class KnowledgeFragment : Fragment() {
+class KnowledgeArticleFragment : Fragment() {
+    private val args: KnowledgeArticleFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        FragmentKnowledgeBinding.inflate(LayoutInflater.from(context), container, false)
+        FragmentKnowledgeArticleBinding.inflate(LayoutInflater.from(context), container, false)
             .apply {
-                val view = LayoutInflater.from(context)
-                    .inflate(R.layout.list_header_footer_blank, container, false)
-                knowledgeList.addHeaderView(view)
-                knowledgeList.addFooterView(view)
-                subscribeUi(this)
+                val adapter = KnowledgeArticleAdapter()
+                articleList.adapter = adapter
+                subscribeUi(adapter, this)
                 return root
             }
     }
 
-    private fun subscribeUi(binding: FragmentKnowledgeBinding) {
+    private fun subscribeUi(adapter: KnowledgeArticleAdapter, binding: FragmentKnowledgeArticleBinding) {
         ViewModelProviders
             .of(this, KnowledgeViewModelFactory())
             .get(KnowledgeViewModel::class.java)
             .apply {
-                knowledge.observe(viewLifecycleOwner, Observer {
-                    Log.d("cbh", "knowledge = $knowledge")
-                    val adapter = KnowledgeListAdapter(knowledge.value!!)
-                    binding.knowledgeList.setAdapter(adapter)
+                getArticles(args.cid).observe(viewLifecycleOwner, Observer {
+                    Log.d("cbh", "observer, articles = $it")
+                    adapter.submitList(it)
                     binding.progressBar.hide()
                 })
             }

@@ -1,9 +1,7 @@
 package me.pakhang.wanandroid.ui.user
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import androidx.transition.Slide
 import me.pakhang.wanandroid.App
-import me.pakhang.wanandroid.MainActivity
 import me.pakhang.wanandroid.R
 import me.pakhang.wanandroid.databinding.FragmentUserProfileBinding
 import me.pakhang.wanandroid.viewmodel.UserViewModel

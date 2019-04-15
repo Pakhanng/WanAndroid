@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -15,6 +16,7 @@
         <variable
             name="canSignUp"
             type="Boolean" />
+
         <variable
             name="gotoSignIn"
             type="android.view.View.OnClickListener" />
@@ -55,7 +57,7 @@
                 android:id="@+id/username_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
                 android:drawableStart="@drawable/ic_person_outline_black_24dp"
                 android:drawablePadding="16dp"
                 android:drawableTint="@color/colorPrimary"
@@ -68,13 +70,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginEnd="16dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
                 android:drawableStart="@drawable/ic_lock_outline_black_24dp"
                 android:drawablePadding="16dp"
                 android:drawableTint="@color/colorPrimary"
@@ -100,8 +104,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
-                    android:onClick="@{signIn}"
                     android:enabled="@{viewModel.userName.length() > 0 &amp;&amp; viewModel.password.length() > 0}"
+                    android:onClick="@{signIn}"
                     android:text="登录"
                     android:theme="@style/PrimaryButton" />
 
@@ -128,13 +132,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp">
+                    android:layout_marginEnd="16dp"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/colorAccent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/confirm_password_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/white"
+                        android:backgroundTint="@android:color/transparent"
                         android:drawableStart="@drawable/ic_lock_outline_black_24dp"
                         android:drawablePadding="16dp"
                         android:drawableTint="@color/colorPrimary"

@@ -3,6 +3,7 @@ package me.pakhang.wanandroid.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import me.pakhang.wanandroid.App
 import me.pakhang.wanandroid.model.Resource
 import me.pakhang.wanandroid.model.User
@@ -39,4 +40,9 @@ class UserViewModel(private val repo: UserRepository) : ViewModel() {
 
     }
 
+}
+
+@Suppress("UNCHECKED_CAST")
+class UserViewModelFactory : ViewModelProvider.NewInstanceFactory() {
+    override fun <T : ViewModel?> create(modelClass: Class<T>) = UserViewModel(UserRepository) as T
 }

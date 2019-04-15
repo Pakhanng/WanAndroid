@@ -62,7 +62,7 @@ interface WanApi {
     @GET("banner/json")
     fun getBanner(): Call<BannerResponse>
 
-    class BannerResponse {
+    class BannerResponse: BaseResponse() {
         val data: List<BannerItem>? = null
     }
 
@@ -72,7 +72,7 @@ interface WanApi {
     @GET("project/tree/json")
     fun getProjectCategory(): Call<ProjectCategoryResponse>
 
-    class ProjectCategoryResponse {
+    class ProjectCategoryResponse: BaseResponse() {
         val data: List<ProjectCategory>? = null
     }
 
@@ -85,13 +85,33 @@ interface WanApi {
     @GET("project/list/{page}/json")
     fun getProjects(@Path("page") page: Int, @Query("cid") cid: Int): Call<ProjectResponse>
 
-    class ProjectResponse {
+    class ProjectResponse: BaseResponse() {
         val data: Data? = null
 
         inner class Data {
             val datas: List<Project>? = null
         }
     }
+
+    /**
+     * 体系数据
+     * 主要标识的网站内容的体系结构，二级目录。
+     */
+    @GET("tree/json")
+    fun getKnowledge(): Call<KnowledgeResponse>
+
+    class KnowledgeResponse: BaseResponse() {
+        val data: List<Knowledge>? = null
+    }
+
+    /**
+     * 知识体系下的文章
+     * 参数：
+     * cid 分类的id，上述二级目录的id
+     * page：拼接在链接上，从0开始。
+     */
+    @GET("article/list/{page}/json")
+    fun getKnowledgeArticle(@Path("page") page: Int, @Query("cid") cid: Int): Call<ArticleResponse>
 
     /**
      * 登录后会在cookie中返回账号密码，只要在客户端做cookie持久化存储即可自动登录验证。

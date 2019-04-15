@@ -7,7 +7,8 @@ import androidx.paging.ItemKeyedDataSource
 import me.pakhang.wanandroid.web.WanApi
 import me.pakhang.wanandroid.model.Article
 
-class ArticleDataSource(private val api: WanApi) : ItemKeyedDataSource<Int, Article>() {
+class KnowledgeArticleDataSource(private val api: WanApi, private val cid: Int) :
+    ItemKeyedDataSource<Int, Article>() {
 
     private var page: Int = 0
 
@@ -15,28 +16,17 @@ class ArticleDataSource(private val api: WanApi) : ItemKeyedDataSource<Int, Arti
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Article>
     ) {
-        Log.d(
-            "cbh",
-            "loadInitial, params.requestedInitialKey=${params.requestedInitialKey}, params.requestedLoadSize=${params.requestedLoadSize}"
-        )
-        val response = api.getArticles(page).execute()
+        val response = api.getKnowledgeArticle(page, cid).execute()
         callback.onResult(response.body()!!.data!!.datas!!)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Article>) {
-        Log.d("cbh", "loadAfter, params=$params")
-        val response = api.getArticles(++page).execute()
+        val response = api.getKnowledgeArticle(++page, cid).execute()
         callback.onResult(response.body()!!.data!!.datas!!)
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Article>) {
-        Log.d(
-            "cbh",
-            "loadBefore, params.key=${params.key}, params.requestedLoadSize=${params.requestedLoadSize}"
-        )
     }
-
-//    override fun getKey(item: Article) = page
 
     override fun getKey(item: Article): Int {
         Log.d("cbh", "getKey, item=$item")
@@ -45,12 +35,13 @@ class ArticleDataSource(private val api: WanApi) : ItemKeyedDataSource<Int, Arti
 
 }
 
-class ArticleDataSourceFactory(private val api: WanApi) : DataSource.Factory<Int, Article>() {
+class KnowledgeArticleDataSourceFactory(private val api: WanApi, private val cid: Int) :
+    DataSource.Factory<Int, Article>() {
 
-    private val articles = MutableLiveData<ArticleDataSource>()
+    private val articles = MutableLiveData<KnowledgeArticleDataSource>()
 
     override fun create(): DataSource<Int, Article> {
-        val source = ArticleDataSource(api)
+        val source = KnowledgeArticleDataSource(api, cid)
         articles.postValue(source)
         return source
     }

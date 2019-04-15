@@ -1,8 +1,6 @@
 package me.pakhang.wanandroid.ui.user
 
 import android.os.Bundle
-import android.text.TextWatcher
-import android.util.Log
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.addTextChangedListener
@@ -12,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.transition.Slide
 import androidx.transition.TransitionManager
-import me.pakhang.wanandroid.MainActivity
 import me.pakhang.wanandroid.R
 import me.pakhang.wanandroid.databinding.FragmentLoginBinding
 import me.pakhang.wanandroid.model.Status

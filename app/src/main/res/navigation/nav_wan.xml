@@ -31,7 +31,11 @@
         android:id="@+id/knowledge_fragment"
         android:name="me.pakhang.wanandroid.ui.knowledge.KnowledgeFragment"
         android:label="@string/knowledge"
-        tools:layout="@layout/fragment_knowledge" />
+        tools:layout="@layout/fragment_knowledge" >
+        <action
+            android:id="@+id/action_knowledge_fragment_to_knowledge_article_fragment"
+            app:destination="@id/knowledge_article_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navi_fragment"
@@ -54,6 +58,7 @@
             android:name="link"
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/login_fragment"
         android:name="me.pakhang.wanandroid.ui.user.LoginFragment"
@@ -63,4 +68,13 @@
         android:id="@+id/user_profile_fragment"
         android:name="me.pakhang.wanandroid.ui.user.UserProfileFragment"
         android:label="用户" />
+
+    <fragment
+        android:id="@+id/knowledge_article_fragment"
+        android:name="me.pakhang.wanandroid.ui.knowledge.KnowledgeArticleFragment"
+        android:label="文章列表" >
+        <argument
+            android:name="cid"
+            app:argType="integer" />
+    </fragment>
 </navigation>

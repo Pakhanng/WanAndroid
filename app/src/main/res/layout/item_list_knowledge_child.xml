@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="child"
+            type="me.pakhang.wanandroid.model.KnowledgeChild" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/foreground"
+        android:foreground="?attr/selectableItemBackground"
+        android:layoutDirection="ltr"
+        android:onClick="@{clickListener}"
+        android:paddingStart="72dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:singleLine="true"
+        android:text='@{child.name}'
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+</layout>
