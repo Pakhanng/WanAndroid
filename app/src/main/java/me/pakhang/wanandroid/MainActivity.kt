@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 user = userViewModel.user.value
             })
             clickListener = View.OnClickListener {
-                val direction = HomeFragmentDirections.actionHomeFragmentToUserProfileFragment()
+                val direction = HomeFragmentDirections.actionHomeToUserProfile()
                 mNavController.navigate(direction)
                 mDrawerLayout.closeDrawers()
             }
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         // 某些页面隐藏底部导航栏
         mNavController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNavigationView.visibility = when (destination.id) {
-                R.id.home_fragment, R.id.project_fragment, R.id.knowledge_fragment, R.id.navi_fragment -> View.VISIBLE
+                R.id.home, R.id.project, R.id.knowledge, R.id.navi -> View.VISIBLE
                 else -> View.GONE
             }
         }
@@ -84,8 +84,8 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         // 登录页面中点击左上返回键直接回到首页
         val currentDestination = mNavController.currentDestination
-        if (currentDestination != null && currentDestination.id == R.id.login_fragment) {
-            mNavController.popBackStack(R.id.home_fragment, false)
+        if (currentDestination != null && currentDestination.id == R.id.login) {
+            mNavController.popBackStack(R.id.home, false)
             return false
         }
 

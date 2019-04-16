@@ -99,9 +99,7 @@ class KnowledgeListAdapter(val data: List<Knowledge>) : BaseExpandableListAdapte
                 child = data
                 clickListener = View.OnClickListener {
                     val directions =
-                        KnowledgeFragmentDirections.actionKnowledgeFragmentToKnowledgeArticleFragment(
-                            data.id
-                        )
+                        KnowledgeFragmentDirections.actionKnowledgeToKnowledgeArticle(data.id, data.name)
                     it.findNavController().navigate(directions)
                 }
             }

@@ -36,14 +36,14 @@ class UserProfileFragment : Fragment() {
                 user.observe(viewLifecycleOwner, Observer {
                     Log.d("cbh", "UserProfileFragment observe user = ${user.value}")
                     if (it == null)
-                        findNavController().navigate(R.id.login_fragment)
+                        findNavController().navigate(R.id.login)
 
                 })
             }
         binding.apply {
             signOut = View.OnClickListener {
                 viewModel.signOut()
-                findNavController().popBackStack(R.id.home_fragment, false)
+                findNavController().popBackStack(R.id.home, false)
             }
         }
     }

@@ -19,8 +19,8 @@
             android:childDivider="@color/foreground"
             android:divider="@null"
             android:footerDividersEnabled="false"
+            android:indicatorRight="48dp"
             android:headerDividersEnabled="false"
-            android:indicatorEnd="32dp"
             android:layoutDirection="rtl"
             android:scrollbars="none">
 
