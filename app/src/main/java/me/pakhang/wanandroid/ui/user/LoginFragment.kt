@@ -105,7 +105,7 @@ class LoginFragment : Fragment() {
         }
 
         requireActivity().addOnBackPressedCallback(viewLifecycleOwner, OnBackPressedCallback {
-            findNavController().popBackStack(R.id.home_fragment, false)
+            findNavController().popBackStack(R.id.home, false)
             true
         })
     }

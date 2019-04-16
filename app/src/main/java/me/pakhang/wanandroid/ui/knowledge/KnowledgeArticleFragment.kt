@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import me.pakhang.wanandroid.databinding.FragmentKnowledgeArticleBinding
 import me.pakhang.wanandroid.viewmodel.KnowledgeViewModel
@@ -20,6 +22,9 @@ class KnowledgeArticleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (activity != null)
+            (activity as AppCompatActivity).supportActionBar!!.title = args.name
+
         FragmentKnowledgeArticleBinding.inflate(LayoutInflater.from(context), container, false)
             .apply {
                 val adapter = KnowledgeArticleAdapter()
@@ -29,7 +34,10 @@ class KnowledgeArticleFragment : Fragment() {
             }
     }
 
-    private fun subscribeUi(adapter: KnowledgeArticleAdapter, binding: FragmentKnowledgeArticleBinding) {
+    private fun subscribeUi(
+        adapter: KnowledgeArticleAdapter,
+        binding: FragmentKnowledgeArticleBinding
+    ) {
         ViewModelProviders
             .of(this, KnowledgeViewModelFactory())
             .get(KnowledgeViewModel::class.java)

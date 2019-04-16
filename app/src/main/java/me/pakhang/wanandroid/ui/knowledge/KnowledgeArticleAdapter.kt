@@ -7,18 +7,17 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import me.pakhang.wanandroid.databinding.ItemListArticleBinding
 import me.pakhang.wanandroid.model.Article
-import me.pakhang.wanandroid.ui.home.ArticleViewHolder
 
 class KnowledgeArticleAdapter :
-    PagedListAdapter<Article, ArticleViewHolder>(ArticleDiffCallback()) {
+    PagedListAdapter<Article, KnowledgeArticleViewHolder>(ArticleDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ArticleViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = KnowledgeArticleViewHolder(
         ItemListArticleBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
     )
 
-    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: KnowledgeArticleViewHolder, position: Int) {
         holder.bind(getItem(position)!!)
     }
 

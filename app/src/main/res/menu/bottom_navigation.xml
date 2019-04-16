@@ -6,17 +6,17 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/project_fragment"
+        android:id="@+id/project"
         android:icon="@drawable/ic_apps_black_24dp"
         android:title="@string/project" />
 
     <item
-        android:id="@+id/knowledge_fragment"
+        android:id="@+id/knowledge"
         android:icon="@drawable/ic_library_books_black_24dp"
         android:title="@string/knowledge" />
 
     <item
-        android:id="@+id/navi_fragment"
+        android:id="@+id/navi"
         android:icon="@drawable/ic_navigation_black_24dp"
         android:title="@string/navi" />
 

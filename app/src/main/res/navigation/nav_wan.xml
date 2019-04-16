@@ -2,55 +2,55 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/home_fragment"
+        android:id="@+id/home"
         android:name="me.pakhang.wanandroid.ui.home.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_home_fragment_to_web_view_fragment"
-            app:destination="@id/web_view_fragment" />
+            android:id="@+id/action_home_to_web_view"
+            app:destination="@id/web_view" />
         <action
-            android:id="@+id/action_home_fragment_to_user_profile_fragment"
-            app:destination="@id/user_profile_fragment" />
+            android:id="@+id/action_home_to_user_profile"
+            app:destination="@id/user_profile" />
     </fragment>
 
     <fragment
-        android:id="@+id/project_fragment"
+        android:id="@+id/project"
         android:name="me.pakhang.wanandroid.ui.project.ProjectFragment"
         android:label="@string/project"
         tools:layout="@layout/fragment_project">
         <action
-            android:id="@+id/action_project_fragment_to_web_view_fragment"
-            app:destination="@id/web_view_fragment" />
+            android:id="@+id/action_project_to_web_view"
+            app:destination="@id/web_view" />
     </fragment>
 
     <fragment
-        android:id="@+id/knowledge_fragment"
+        android:id="@+id/knowledge"
         android:name="me.pakhang.wanandroid.ui.knowledge.KnowledgeFragment"
         android:label="@string/knowledge"
-        tools:layout="@layout/fragment_knowledge" >
+        tools:layout="@layout/fragment_knowledge">
         <action
-            android:id="@+id/action_knowledge_fragment_to_knowledge_article_fragment"
-            app:destination="@id/knowledge_article_fragment" />
+            android:id="@+id/action_knowledge_to_knowledge_article"
+            app:destination="@id/knowledge_article" />
     </fragment>
 
     <fragment
-        android:id="@+id/navi_fragment"
+        android:id="@+id/navi"
         android:name="me.pakhang.wanandroid.ui.navi.NaviFragment"
         android:label="@string/navi"
         tools:layout="@layout/fragment_navi" />
 
     <fragment
-        android:id="@+id/collect_fragment"
+        android:id="@+id/collect"
         android:name="me.pakhang.wanandroid.ui.collect.CollectFragment"
         android:label="@string/collect"
         tools:layout="@layout/fragment_collect" />
 
     <fragment
-        android:id="@+id/web_view_fragment"
+        android:id="@+id/web_view"
         android:name="me.pakhang.wanandroid.ui.WebViewFragment"
         android:label="加载中"
         tools:layout="@layout/fragment_web_view">
@@ -60,21 +60,28 @@
     </fragment>
 
     <fragment
-        android:id="@+id/login_fragment"
+        android:id="@+id/login"
         android:name="me.pakhang.wanandroid.ui.user.LoginFragment"
         android:label="登录"
         tools:layout="@layout/fragment_login" />
+
     <fragment
-        android:id="@+id/user_profile_fragment"
+        android:id="@+id/user_profile"
         android:name="me.pakhang.wanandroid.ui.user.UserProfileFragment"
         android:label="用户" />
 
     <fragment
-        android:id="@+id/knowledge_article_fragment"
+        android:id="@+id/knowledge_article"
         android:name="me.pakhang.wanandroid.ui.knowledge.KnowledgeArticleFragment"
-        android:label="文章列表" >
+        android:label="文章列表">
         <argument
             android:name="cid"
             app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_knowledge_article_to_web_view"
+            app:destination="@id/web_view" />
     </fragment>
 </navigation>
